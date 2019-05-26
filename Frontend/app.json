@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "4x4 App",
+    "slug": "4x4",
+    "privacy": "public",
+    "sdkVersion": "32.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/background.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#B24D71"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "strikewar.googlemapsapi",
+      "config": {
+         "googleMaps": { "apiKey": "AIzaSyDKUlAqVxItmlmHK7DTOv5aK0Q4_D1aGyk" }   
+      }
+   },
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
