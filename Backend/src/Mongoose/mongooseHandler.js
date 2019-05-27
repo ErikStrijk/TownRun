@@ -32,6 +32,26 @@ module.exports = {
                     });
                     });
     },
+    insertUser: async(username, password) => {
+            const document = { 
+                "Username" : username, 
+                "StageId" : 1, 
+                "SectionId" : 1, 
+                "ChallengeId" : 1, 
+                "finished" : false, 
+                "Password" : password
+            };
+            
+            MongoClient.connect(url, async(err, db) =>{
+                if (err) throw err;
+                dbo = db.db("4x4");
+                dbo.collection("Drivers").insertOne(document, function(err, res) {
+                    if (err) throw err;
+                    console.log("1 document inserted");
+                    db.close();
+                  });
+        })
+    },
     getCurrentData: async(username, password) => {
         succes = await (() => (new Promise((resolve, reject) => {
             
