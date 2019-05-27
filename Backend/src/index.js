@@ -1,13 +1,12 @@
 //IMPORT DEPENDENCIES
-const http = require("http");
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const multer = require('multer');
 
 //DECLEARE MODULES
 const app = express();
 const apis = require('./Apis');
+const dialogflow = require('./Dialogflow/Intents');
 
 //Configuration
 const port = process.env.PORT || 8080;
@@ -27,11 +26,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 //APIS
+app.post('/dialogflow', dialogflow); 
+
 app.post('/getCurrentData', apis.getCurrentData); 
 app.post('/validateLogin', apis.validateLogin);
 app.post('/challengeWithPhoto', upload.single('photo'), apis.challengeWithPhoto); 
 app.post('/challenge', apis.challenge); 
-
+app.post('/dialogflow', apis.challenge); 
 app.post('/arrivedAtLocation', apis.arrivedAtLocation); 
 
 app.listen(port, () => {
