@@ -5,15 +5,16 @@ module.exports = (req, res) => {
         const agent = new WebhookClient({ request: req, response: res })
         function addUser (request) {
           agent.add(request.parameters.username + " is toegevoegd.");
-          console.log(request.parameters)
           mongooseHandler.insertUser(request.parameters.username[0], request.parameters.password);
         }
         function removeUser (request) {
-          agent.add(request.parameters.username + " is toegevoegd.");
+          agent.add(request.parameters.username + " is verwijderd.");
           console.log(request.parameters)
-          mongooseHandler.insertUser(request.parameters.username[0], request.parameters.password);
+          mongooseHandler.deleteUser(request.parameters.username);
         }
-        let intentMap = new Map()
-        intentMap.set('Voeg gebruiker toe', addUser)
+        let intentMap = new Map();
+        intentMap.set('Voeg gebruiker toe', addUser);
+        intentMap.set('Verwijder gebruiker', removeUser);
+
         agent.handleRequest(intentMap)
 };

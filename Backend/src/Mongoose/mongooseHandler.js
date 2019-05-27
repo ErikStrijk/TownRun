@@ -32,6 +32,17 @@ module.exports = {
                     });
                     });
     },
+    deleteUser: (username) => {
+        MongoClient.connect(url, async(err, db) =>{
+            if (err) throw err;
+            dbo = db.db("4x4");
+            dbo.collection("Drivers").deleteOne({Username: username}, function(err, obj) {
+                if (err) throw err;
+                console.log("1 document deleted");
+                db.close();
+              });
+            }); 
+    },
     insertUser: async(username, password) => {
             const document = { 
                 "Username" : username, 
